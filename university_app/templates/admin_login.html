@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Вход администратора{% endblock %}
+{% block content %}
+<div class="login-container">
+  <h2>Вход администратора</h2>
+
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <label>Логин:</label>
+    <input type="text" name="username" required>
+    <label>Пароль:</label>
+    <input type="password" name="password" required>
+    <button type="submit" class="btn">Войти</button>
+  </form>
+</div>
+{% endblock %}

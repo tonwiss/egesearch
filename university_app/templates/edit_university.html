@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Редактирование{% endblock %}
+{% block content %}
+<div class="admin-page">
+  <h2>Редактирование вуза: {{ faculty.title }}</h2>
+  <form method="post" enctype="multipart/form-data" class="admin-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Сохранить</button>
+    <a href="{% url 'custom_admin' %}" class="btn small">Назад</a>
+  </form>
+</div>
+{% endblock %}

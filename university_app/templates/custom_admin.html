@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Панель администратора{% endblock %}
+{% block content %}
+<div class="admin-page">
+  <h1>Панель администратора</h1>
+
+  <a href="{% url 'admin_logout' %}" class="btn danger">Выйти</a>
+
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <form method="post" enctype="multipart/form-data" class="admin-form">
+    {% csrf_token %}
+    <h2>Добавить вуз</h2>
+    {{ form.as_p }}
+    <button type="submit" class="btn">Добавить</button>
+  </form>
+
+  <hr>
+  <h2>Список вузов</h2>
+  <div class="cards">
+    {% for u in faculties %}
+      <div class="card">
+        <img src="{{ u.photo.url }}" alt="">
+        <div class="card-body">
+          <h3>{{ u.title }}</h3>
+          <p>{{ u.short_description }}</p>
+          <p>{{ u.get_direction_display }}</p>
+          <p>{{ u.is_budget|yesno:"Бюджет,Платно" }}</p>
+          {% if u.price_rub %}<p>Цена: {{ u.price_rub }} ₽</p>{% endif %}
+          <div class="card-buttons">
+            <a href="{% url 'edit_university' u.pk %}" class="btn small">Редактировать</a>
+            <a href="{% url 'delete_university' u.pk %}" class="btn small danger">Удалить</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>Нет добавленных вузов.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

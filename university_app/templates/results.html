@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты</title>
+    <link rel="stylesheet" href="{% static 'results.css' %}">
+</head>
+<body>
+    <div class="results-page">
+        <h1 class="results-title">Результаты анализа достижений</h1>
+
+        <div class="button-panel">
+            <div class="button-wrapper">
+                <button class="basis-btn" data-type="budget">Бюджетная основа обучения</button>
+                <div class="faculty-list" id="budget-list"></div>
+            </div>
+            <div class="button-wrapper">
+                <button class="basis-btn" data-type="paid">Платная основа обучения</button>
+                <div class="faculty-list" id="paid-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'results.js' %}"></script>
+</body>
+</html>

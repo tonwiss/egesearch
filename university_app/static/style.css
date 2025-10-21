@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url("/static/images/kremlin.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+/* Центральный текст с затемнением */
+.title-block {
+    position: relative;
+    display: inline-block;
+    padding: 20px 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+    color: white;
+    max-width: 600px;
+    text-align: center;
+}
+
+.title-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.title-block .main-title {
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.title-block .incoming-text {
+    font-size: 1rem;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* Кнопка Выбрать ВУЗ */
+.btn-green {
+    margin-top: 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-green:hover { background-color: #218838; }
+
+/* Левая плашка */
+.side-panel {
+    position: fixed;
+    top: 50%;
+    left: -300px;
+    width: 280px;
+    min-height: 220px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 10px;
+    transform: translateY(-50%);
+    transition: left 1s ease;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.side-panel.show { left: 20px; }
+
+/* Правая плашка */
+.right-panel {
+    position: fixed;
+    top: 50%;
+    right: -320px;
+    width: 300px;
+    min-height: 520px;
+    background-color: rgba(0,0,0,0.85);
+    border-radius: 10px;
+    transform: translateY(-50%);
+    transition: right 1s ease;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+.right-panel.show { right: 20px; }
+
+.right-panel h3 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+/* Кнопки достижений */
+.achievement-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.achieve-btn {
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.achieve-btn:hover { background-color: #0056b3; }
+
+/* Крестик */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.close-btn.hidden { display: none; }
+
+/* Кружки выбора */
+.circle-options { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.circle-label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.circle { width: 18px; height: 18px; border-radius: 50%; border: 2px solid white; }
+.circle.selected { background-color: #28a745; border-color: #28a745; }
+
+.hidden { display: none; }
+
+/* Волонтёрство */
+#volHours { margin-top: 10px; }
+#volInput { width: 80%; padding: 5px; border-radius: 5px; border: none; }
+
+/* Олимпиады */
+.olymp-entry input { display: block; width: 90%; margin-bottom: 5px; padding: 5px; border-radius: 5px; border: none; }

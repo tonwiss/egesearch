@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="hero">
+    <!-- Центральный текст с затемнением -->
+    <div id="titleBlock" class="title-block">
+        <h1 class="main-title">Мой ВУЗ</h1>
+        <p class="incoming-text">
+            Добро пожаловать! Наш сайт поможет Вам подобрать идеальный ВУЗ на основе ваших достижений и предпочтений.
+        </p>
+    </div>
+
+    <!-- Центральная кнопка "Выбрать ВУЗ" -->
+    <button class="btn-green" id="choose-btn">Выбрать ВУЗ</button>
+
+    <!-- Левая плашка -->
+    <div class="side-panel" id="sidePanel">
+        <p>
+            Чтобы лучше подготовиться к ЕГЭ, можно воспользоваться платформой 
+            <a href="https://3.shkolkovo.online/courses-list/ege" target="_blank">Школково</a>. 
+            Она поможет систематизировать знания и улучшить результат.
+        </p>
+    </div>
+
+    <!-- Правая плашка -->
+    <div class="right-panel" id="rightPanel">
+        <h3>Ваши достижения</h3>
+        <button class="close-btn hidden" id="closeBtn">✖</button>
+
+        <!-- Кнопки достижений -->
+        <div class="achievement-buttons" id="achievementButtons">
+            <button class="achieve-btn" data-type="EGE">Баллы ЕГЭ</button>
+            <button class="achieve-btn" data-type="Olymp">Олимпиады</button>
+            <button class="achieve-btn" data-type="GTO">ГТО</button>
+            <button class="achieve-btn" data-type="Volonteer">Волонтёрство</button>
+            <button class="achieve-btn" data-type="Direction">Выбрать направление</button>
+        </div>
+
+        <!-- Блок ЕГЭ -->
+        <div id="egeBlock" class="hidden">
+            <p>МАТЕМАТИКА</p>
+            <div class="circle-options">
+                <div class="circle-label"><div class="circle" id="basicLevel"></div> Базовый уровень</div>
+                <div class="circle-label"><div class="circle" id="profileLevel"></div> Профильный уровень</div>
+            </div>
+            <div id="egeInputContainer" class="hidden"></div>
+
+            <h4>Прочие экзамены</h4>
+            <div id="otherExamsContainer"></div>
+            <button class="btn-green" id="addExamBtn">Добавить</button>
+        </div>
+
+        <!-- Блок ГТО -->
+        <div id="gtoBlock" class="hidden">
+            <p>Есть ли у вас значок ГТО?</p>
+            <div class="circle-options">
+                <div class="circle-label"><div class="circle gto-option" data-value="Золотой"></div> Золотой</div>
+                <div class="circle-label"><div class="circle gto-option" data-value="Серебряный"></div> Серебряный</div>
+                <div class="circle-label"><div class="circle gto-option" data-value="Бронзовый"></div> Бронзовый</div>
+                <div class="circle-label"><div class="circle gto-option" data-value="Нет"></div> Нет</div>
+            </div>
+        </div>
+
+        <!-- Волонтёрство -->
+        <div id="volonteerBlock" class="hidden">
+            <p>Занимались ли вы волонтерством?</p>
+            <div class="circle-options">
+                <div class="circle-label"><div class="circle vol-option" data-value="Да"></div> Да</div>
+                <div class="circle-label"><div class="circle vol-option" data-value="Нет"></div> Нет</div>
+            </div>
+            <div id="volHours" class="hidden">
+                <p>Сколько часов вы провели волонтером?</p>
+                <input type="number" id="volInput" placeholder="Введите количество часов">
+            </div>
+        </div>
+
+        <!-- Олимпиады -->
+        <div id="olympBlock" class="hidden">
+            <p>Участвовали ли вы в Олимпиадах?</p>
+            <div class="circle-options">
+                <div class="circle-label"><div class="circle olymp-option" data-value="Да"></div> Да</div>
+                <div class="circle-label"><div class="circle olymp-option" data-value="Нет"></div> Нет</div>
+            </div>
+            <div id="olympFieldsContainer" class="hidden"></div>
+        </div>
+
+        <!-- Выбор направления -->
+        <div id="directionsList" class="directions hidden">
+            <h4>Выберите направление:</h4>
+            <div class="direction-buttons">
+                {% for dir in directions %}
+                    <button class="dir-btn">{{dir.1}}</button>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Кнопка "Найти ВУЗ" -->
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="{% url 'results' %}" class="btn-green" id="findBtn">Найти ВУЗ</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

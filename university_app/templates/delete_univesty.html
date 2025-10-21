@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Удаление{% endblock %}
+{% block content %}
+<div class="admin-page">
+  <h2>Удалить вуз "{{ faculty.title }}"?</h2>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn danger">Удалить</button>
+    <a href="{% url 'custom_admin' %}" class="btn small">Отмена</a>
+  </form>
+</div>
+{% endblock %}
