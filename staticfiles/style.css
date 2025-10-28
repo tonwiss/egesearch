@@ -1,8 +1,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    color: black;
-    background-color: white;
+    color: white;
     overflow: hidden;
 }
 
@@ -17,44 +16,54 @@ body {
     background-image: url("/static/images/kremlin.jpg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.3);
-    background-blend-mode: darken;
 }
 
-/* Заголовки */
-.main-title {
-    font-size: 2.2rem;
-    font-weight: bold;
-    margin: 0;
-    color: white;
+/* Центральный текст с затемнением */
+.title-block {
+    position: relative;
+    display: inline-block;
+    padding: 20px 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-}
-.main-title.visible { opacity: 1; transform: translateY(0); }
-
-.incoming-text {
-    font-size: 1rem;
-    margin-top: 15px;
+    transition: opacity 1s ease, transform 1s ease;
+    color: white;
     max-width: 600px;
-    color: white;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1.5s ease 0.5s, transform 1.5s ease 0.5s;
+    text-align: center;
 }
-.incoming-text.visible { opacity: 1; transform: translateY(0); }
 
-.choose-btn {
-    margin-top: 30px;
-    padding: 12px 25px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
+.title-block.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
+
+.title-block .main-title {
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.title-block .incoming-text {
+    font-size: 1rem;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* Кнопка Выбрать ВУЗ */
+.btn-green {
+    margin-top: 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-green:hover { background-color: #218838; }
 
 /* Левая плашка */
 .side-panel {
@@ -62,11 +71,13 @@ body {
     top: 50%;
     left: -300px;
     width: 280px;
-    height: 220px;
+    min-height: 220px;
     background-color: rgba(0,0,0,0.7);
     border-radius: 10px;
     transform: translateY(-50%);
     transition: left 1s ease;
+    padding: 15px;
+    box-sizing: border-box;
 }
 .side-panel.show { left: 20px; }
 
@@ -76,23 +87,17 @@ body {
     top: 50%;
     right: -320px;
     width: 300px;
-    height: 520px;
+    min-height: 520px;
     background-color: rgba(0,0,0,0.85);
     border-radius: 10px;
     transform: translateY(-50%);
-    transition: right 1s ease, height 0.8s ease;
+    transition: right 1s ease;
     color: white;
     padding: 20px;
     box-sizing: border-box;
     overflow-y: auto;
 }
 .right-panel.show { right: 20px; }
-
-.right-panel.expanded {
-    height: 90vh;
-    top: 5vh;
-    transform: none;
-}
 
 .right-panel h3 {
     text-align: center;
@@ -119,34 +124,6 @@ body {
 }
 .achieve-btn:hover { background-color: #0056b3; }
 
-/* Кнопки направлений */
-.directions {
-    text-align: center;
-    margin-top: 15px;
-}
-.directions.hidden { display: none; }
-
-.direction-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 10px;
-    justify-items: center;
-    margin-top: 10px;
-}
-.dir-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 0;
-    width: 90%;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-.dir-btn:hover { background-color: #0056b3; }
-.dir-btn.selected { background-color: #28a745; } /* зелёная при выборе */
-
 /* Крестик */
 .close-btn {
     position: absolute;
@@ -159,3 +136,18 @@ body {
     cursor: pointer;
 }
 .close-btn.hidden { display: none; }
+
+/* Кружки выбора */
+.circle-options { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.circle-label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.circle { width: 18px; height: 18px; border-radius: 50%; border: 2px solid white; }
+.circle.selected { background-color: #28a745; border-color: #28a745; }
+
+.hidden { display: none; }
+
+/* Волонтёрство */
+#volHours { margin-top: 10px; }
+#volInput { width: 80%; padding: 5px; border-radius: 5px; border: none; }
+
+/* Олимпиады */
+.olymp-entry input { display: block; width: 90%; margin-bottom: 5px; padding: 5px; border-radius: 5px; border: none; }

@@ -1,11 +1,14 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-test-key-change-me'
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = True if os.getenv('DEBUG') == 'True' else False
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
